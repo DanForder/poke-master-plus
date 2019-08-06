@@ -1,6 +1,6 @@
 import React from "react";
-// import pokeball from "../src/assets/pokeball.png";
 import "./App.scss";
+import PokedexEntry from "./components/PokedexEntry";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         alt="pokeball"
       />
       <h2>The Pokedex is coming!</h2>
+      <PokedexEntry id="1" />
     </div>
   );
 }
