@@ -1,18 +1,24 @@
 import React from "react";
-import "./App.scss";
+import styles from "./App.scss";
 import PokedexEntry from "./components/PokedexEntry";
+import Routes from "./routes/Routes";
+import { Link } from "@reach/router";
 
 function App() {
   return (
     <div class="wrapper">
-      <h1>pokedex.dforder.com</h1>
-      <img
-        class="pokeball"
-        src="https://purepng.com/public/uploads/large/purepng.com-pokeballpokeballdevicepokemon-ballpokemon-capture-ball-1701527825891sbtn8.png"
-        alt="pokeball"
-      />
-      <h2>The Pokedex is coming!</h2>
-      <PokedexEntry id="1" />
+      <header class="header">
+        <h1>pokedex.dforder.com</h1>
+      </header>
+      <Routes />
+      <nav class="navbar">
+        <div>
+          <Link to="/home">Home</Link>
+        </div>
+        <div>
+          <Link to="/pokedex">Pokedex</Link>
+        </div>
+      </nav>
     </div>
   );
 }

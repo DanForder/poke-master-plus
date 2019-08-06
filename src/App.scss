@@ -12,11 +12,25 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  flex-wrap: wrap;
-  text-align: center;
-  height: 80vh;
+
   & > * {
-    margin: 10px;
+    border: greenyellow 2px solid;
+  }
+
+  .header {
+    height: 10vh;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+  }
+  .navbar {
+    height: 10vh;
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
   }
 }
 .pokeball {
