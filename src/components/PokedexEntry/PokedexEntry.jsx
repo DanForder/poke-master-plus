@@ -7,16 +7,20 @@ class PokedexEntry extends Component {
   //https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151
   //https://pokeapi.co/api/v2/pokemon/1/
 
-  componentDidMount() {
+  fetchData(random) {
+    //if random, choose random ID, else use prop ID passed in
+    let newId;
+    random ? (newId = this.randomBetweenTwo(1, 151)) : (newId = this.props.id);
+
     //pokemon-species fetch
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${this.props.id}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${newId}/`)
       .then(res => res.json())
       .then(data => {
         this.setState({ pokemon: data });
       })
       .catch(error => console.log(error));
     //image fetch
-    fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.id}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${newId}/`)
       .then(res => res.json())
       .then(data => {
         this.setState({ pokemonImage: data.sprites });
@@ -25,24 +29,17 @@ class PokedexEntry extends Component {
   }
 
   changePokemonButton = () => {
-    const randomNumber = this.randomBetweenTwo(1, 151);
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${randomNumber}/`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ pokemon: data });
-      })
-      .catch(error => console.log(error));
-    fetch(`https://pokeapi.co/api/v2/pokemon/${randomNumber}/`)
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ pokemonImage: data.sprites });
-      })
-      .catch(error => console.log(error));
+    this.fetchData(true);
   };
 
   randomBetweenTwo = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
   };
+
+  componentDidMount() {
+    //pokemon-species fetch
+    this.fetchData(false);
+  }
 
   render() {
     return (
@@ -63,7 +60,7 @@ class PokedexEntry extends Component {
         </section>
         <section>
           {/* <h3>Description</h3> */}
-          <p>{console.log(this.state.pokemon.flavor_text_entries)}</p>
+          {/* <p>{console.log(this.state.pokemon.flavor_text_entries)}</p> */}
         </section>
         <button onClick={this.changePokemonButton}>New Pokemon</button>
       </main>
