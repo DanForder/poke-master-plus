@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import styles from "./PokedexEntry.module.scss";
+// import styles from "./PokedexEntry.module.scss";
 
 class PokedexEntry extends Component {
   state = { pokemon: "", pokemonImage: "" };

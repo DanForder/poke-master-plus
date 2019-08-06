@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./App.scss";
-import PokedexEntry from "./components/PokedexEntry";
+import "./App.scss";
+// import PokedexEntry from "./components/PokedexEntry";
 import Routes from "./routes/Routes";
 import { Link } from "@reach/router";
 
@@ -16,7 +16,7 @@ function App() {
           <Link to="/home">Home</Link>
         </div>
         <div>
-          <Link to="/pokedex">Pokedex</Link>
+          <Link to="/randompokemon">Random Pokemon</Link>
         </div>
       </nav>
     </div>

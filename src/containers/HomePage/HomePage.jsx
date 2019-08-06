@@ -6,6 +6,7 @@ class HomePage extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
+        <h2>Home</h2>
         <img
           class="pokeball"
           src="https://purepng.com/public/uploads/large/purepng.com-pokeballpokeballdevicepokemon-ballpokemon-capture-ball-1701527825891sbtn8.png"
