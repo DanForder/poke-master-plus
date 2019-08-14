@@ -3,17 +3,21 @@ import PokedexEntry from "../../components/PokedexEntry";
 import styles from "./PokedexPage.module.scss";
 
 class PokedexPage extends Component {
-  state = {};
+  state = { entryId: 1 };
 
   randomBetweenTwo = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
   };
 
+  renderPokedexEntry = id => {
+    return <PokedexEntry id={id} />;
+  };
+
   render() {
     return (
       <div className={styles.wrapper}>
-        <h2>Random Pokemon</h2>
-        <PokedexEntry id={this.randomBetweenTwo(1, 151)} />
+        <h2>Pokedex</h2>
+        {this.renderPokedexEntry(this.state.entryId)}
       </div>
     );
   }

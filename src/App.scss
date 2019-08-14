@@ -8,18 +8,21 @@
 }
 
 .wrapper {
+  height: 95vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
 
   // & > * {
+  //   height: 70vh;
   //   border: greenyellow 2px solid;
   // }
 
   .header {
+    // border: blue solid 2px;
     height: 10vh;
-    width: 80vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,8 +30,9 @@
   }
 
   .navbar {
+    // border: blue solid 2px;
     height: 10vh;
-    width: 80vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
