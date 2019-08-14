@@ -13,7 +13,6 @@ class Routes extends Component {
         <Redirect noThrow from="/" to="home" />
         <HomePage path="home" />
         <PokedexPage random={false} path="pokedex" />
-        <PokedexPage random={true} path="randompokemon" />
         <NotFound default />
       </Router>
     );

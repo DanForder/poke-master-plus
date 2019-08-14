@@ -10,7 +10,7 @@ class PokedexEntry extends Component {
   componentDidMount() {
     //pokemon-species fetch
     this.setState({ id: this.props.id });
-    this.fetchData(false, this.props.id);
+    this.fetchData(this.props.id);
   }
 
   getPreviousPokemon(currentId) {
@@ -18,7 +18,7 @@ class PokedexEntry extends Component {
       return null;
     } else {
       const prevId = currentId - 1;
-      this.fetchData(false, prevId);
+      this.fetchData(prevId);
       this.setState({ id: prevId });
     }
   }
@@ -28,25 +28,25 @@ class PokedexEntry extends Component {
       return null;
     } else {
       const nextId = currentId + 1;
-      this.fetchData(false, nextId);
+      this.fetchData(nextId);
       this.setState({ id: nextId });
     }
   }
 
-  fetchData(random, id) {
+  fetchData(id) {
     //if random, choose random ID, else use prop ID passed in
-    let newId;
-    random ? (newId = this.randomBetweenTwo(1, 151)) : (newId = id);
+    // let newId;
+    // random ? (newId = this.randomBetweenTwo(1, 151)) : (newId = id);
 
     //pokemon-species fetch
-    fetch(`https://pokeapi.co/api/v2/pokemon-species/${newId}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
       .then(res => res.json())
       .then(data => {
         this.setState({ pokemon: data });
       })
       .catch(error => console.log(error));
     //image fetch
-    fetch(`https://pokeapi.co/api/v2/pokemon/${newId}/`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then(res => res.json())
       .then(data => {
         this.setState({ pokemonData: data, pokemonImage: data.sprites });
