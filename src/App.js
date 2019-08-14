@@ -16,6 +16,9 @@ function App() {
           <Link to="/home">Home</Link>
         </div>
         <div>
+          <Link to="/pokedex">The Pokedex</Link>
+        </div>
+        <div>
           <Link to="/randompokemon">Random Pokemon</Link>
         </div>
       </nav>

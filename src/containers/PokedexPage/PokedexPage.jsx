@@ -12,8 +12,8 @@ class PokedexPage extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <h2>Random Pokemon</h2>
-        <PokedexEntry id={this.randomBetweenTwo(1, 151)} />
+        <h2>Pokedex</h2>
+        <PokedexEntry id={1} />
       </div>
     );
   }
