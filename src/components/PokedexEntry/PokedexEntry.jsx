@@ -2,15 +2,41 @@ import React, { Component } from "react";
 import styles from "./PokedexEntry.module.scss";
 
 class PokedexEntry extends Component {
-  state = { pokemon: "", pokemonData: "", pokemonImage: "" };
+  state = { pokemon: "", pokemonData: "", pokemonImage: "", id: "" };
 
   //https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151
   //https://pokeapi.co/api/v2/pokemon/1/
 
-  fetchData(random) {
+  componentDidMount() {
+    //pokemon-species fetch
+    this.setState({ id: this.props.id });
+    this.fetchData(false, this.props.id);
+  }
+
+  getPreviousPokemon(currentId) {
+    if (currentId <= 1) {
+      return null;
+    } else {
+      const prevId = currentId - 1;
+      this.fetchData(false, prevId);
+      this.setState({ id: prevId });
+    }
+  }
+
+  getNextPokemon(currentId) {
+    if (currentId >= 151) {
+      return null;
+    } else {
+      const nextId = currentId + 1;
+      this.fetchData(false, nextId);
+      this.setState({ id: nextId });
+    }
+  }
+
+  fetchData(random, id) {
     //if random, choose random ID, else use prop ID passed in
     let newId;
-    random ? (newId = this.randomBetweenTwo(1, 151)) : (newId = this.props.id);
+    random ? (newId = this.randomBetweenTwo(1, 151)) : (newId = id);
 
     //pokemon-species fetch
     fetch(`https://pokeapi.co/api/v2/pokemon-species/${newId}/`)
@@ -97,21 +123,22 @@ class PokedexEntry extends Component {
     );
   };
 
-  componentDidMount() {
-    //pokemon-species fetch
-    this.fetchData(this.props.id === "random");
-  }
-
   render() {
     return (
-      <main>
+      <main className={styles.main}>
         <header>
+          <button onClick={() => this.getPreviousPokemon(this.state.id)}>
+            Previous
+          </button>
           <h2>{this.state.pokemon.name}</h2>
-          <h3>#{this.state.pokemon.id}</h3>
+          <h2>#{this.state.pokemon.id}</h2>
+          <button onClick={() => this.getNextPokemon(this.state.id)}>
+            Next
+          </button>
           {/* TODO: loading image until state is defined */}
         </header>
 
-        <main className={styles.main}>
+        <section className={styles.info}>
           {this.state.pokemonData ? (
             this.getPokemonData()
           ) : (
@@ -123,7 +150,7 @@ class PokedexEntry extends Component {
           ) : (
             <section>Loading Description</section>
           )}
-        </main>
+        </section>
 
         {/* <button onClick={this.changePokemonButton}>New Pokemon</button> */}
       </main>

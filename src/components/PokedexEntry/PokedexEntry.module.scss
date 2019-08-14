@@ -1,30 +1,40 @@
 .main {
-  //   border: green 2px solid;
-  display: flex;
-  flex-direction: column;
-
-  & > * {
-    margin: 10px auto;
-  }
-  .pokeData {
-    width: 100%;
-    // border: red solid 2px;
+  // border: greenyellow 2px solid;
+  header {
     display: flex;
-    align-items: center;
+    justify-content: space-evenly;
+    button {
+      min-width: 60px;
+    }
+  }
+  .info {
+    // border: green 2px solid;
+    display: flex;
     flex-direction: column;
 
     & > * {
-      //   border: blue 2px solid;
-      width: 95%;
       margin: 10px auto;
-      display: flex;
-      justify-content: space-evenly;
     }
-  }
+    .pokeData {
+      width: 100%;
+      // border: red solid 2px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
 
-  .pokeDescription {
-    & > * {
-      margin: 2.5% auto;
+      & > * {
+        // border: blue 2px solid;
+        width: 95%;
+        margin: 10px auto;
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+
+    .pokeDescription {
+      & > * {
+        margin: 2.5% auto;
+      }
     }
   }
 }
