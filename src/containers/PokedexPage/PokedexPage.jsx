@@ -42,11 +42,12 @@ class PokedexPage extends Component {
   filterRenderedCards = searchTerm => {
     if (this.state.pokemonNames) {
       const currentCards = this.renderPokeCards();
-      // console.log(currentCards);
       let filteredCards = currentCards.filter(card => {
-        return card.props.name.includes(searchTerm);
+        return (
+          card.props.name.includes(searchTerm) ||
+          card.props.id.toString().includes(searchTerm)
+        );
       });
-      console.log(filteredCards);
       return filteredCards;
     }
   };
