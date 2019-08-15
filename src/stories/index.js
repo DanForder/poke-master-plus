@@ -22,5 +22,5 @@ storiesOf("Button", module)
   ));
 
 storiesOf("Pokedex Entry", module).add("Pokedex Entry Thing", () => (
-  <PokedexEntry />
+  <PokedexEntry id={1} />
 ));
