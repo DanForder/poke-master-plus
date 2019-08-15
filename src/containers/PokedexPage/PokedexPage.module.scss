@@ -1,6 +1,6 @@
 .wrapper {
   // border: green 2px solid;
-  width: 80vw;
+  width: 100vw;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -9,7 +9,7 @@
   text-align: center;
 
   .pokedexCards {
-    border: blue 2px double;
+    // border: blue 2px double;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
