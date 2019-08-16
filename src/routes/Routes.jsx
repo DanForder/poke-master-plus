@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Router, Redirect } from "@reach/router";
 import HomePage from "../containers/HomePage";
 import PokedexPage from "../containers/PokedexPage";
+import PokedexEntry from "../components/PokedexEntry/PokedexEntry";
 
 const NotFound = () => <h2>Not Found</h2>;
 
@@ -10,9 +11,10 @@ class Routes extends Component {
   render() {
     return (
       <Router>
-        <Redirect noThrow from="/" to="home" />
+        <Redirect noThrow from="/" to="pokedex" />
         <HomePage path="home" />
-        <PokedexPage random={false} path="pokedex" />
+        <PokedexPage path="pokedex" />
+        <PokedexEntry path="pokedex/:id" />
         <NotFound default />
       </Router>
     );

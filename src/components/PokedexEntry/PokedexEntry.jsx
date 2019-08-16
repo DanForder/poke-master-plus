@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import styles from "./PokedexEntry.module.scss";
+import { Link } from "@reach/router";
 
 class PokedexEntry extends Component {
-  state = { pokemon: "", pokemonData: "", pokemonImage: "", id: "" };
+  state = { pokemon: "", pokemonData: "", pokemonImage: "", id: 0 };
 
   //https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151
   //https://pokeapi.co/api/v2/pokemon/1/
@@ -23,15 +24,15 @@ class PokedexEntry extends Component {
     }
   }
 
-  getNextPokemon(currentId) {
-    if (currentId >= 151) {
+  getNextPokemon = currentId => {
+    if (Number(currentId) >= 151) {
       return null;
     } else {
-      const nextId = currentId + 1;
+      const nextId = Number(currentId) + 1;
       this.fetchData(nextId);
       this.setState({ id: nextId });
     }
-  }
+  };
 
   fetchData(id) {
     //if random, choose random ID, else use prop ID passed in
@@ -127,14 +128,22 @@ class PokedexEntry extends Component {
     return (
       <main className={styles.main}>
         <header>
-          <button onClick={() => this.getPreviousPokemon(this.state.id)}>
-            Previous
-          </button>
-          <h2>{this.state.pokemon.name}</h2>
+          <Link to="../">
+            <button onClick={() => this.getPreviousPokemon(this.state.id)}>
+              Pokedex
+            </button>
+          </Link>
+          {this.state.pokemon ? (
+            <h2>{this.capitalize(this.state.pokemon.name)}</h2>
+          ) : (
+            <h2>Loading...</h2>
+          )}
           <h2>#{this.state.pokemon.id}</h2>
-          <button onClick={() => this.getNextPokemon(this.state.id)}>
-            Next
-          </button>
+          <Link to={`../${this.state.pokemon.id + 1}`}>
+            <button onClick={() => this.getNextPokemon(this.state.id)}>
+              Next
+            </button>
+          </Link>
           {/* TODO: loading image until state is defined */}
         </header>
 

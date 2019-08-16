@@ -1,24 +1,23 @@
 import React, { Component } from "react";
-import PokedexEntry from "../../components/PokedexEntry";
+// import PokedexEntry from "../../components/PokedexEntry";
 import PokedexCard from "../../components/PokedexCard";
 import SearchBar from "../../components/SearchBar";
 import styles from "./PokedexPage.module.scss";
+import { Link } from "@reach/router";
 
 class PokedexPage extends Component {
   state = {
     pokemonNames: null,
-    entryId: 1,
     searchText: "",
-    cards: [],
     filteredList: []
   };
 
   componentDidMount() {
-    this.fetchPokemonNames();
+    this.fetchPokemonNames(151);
   }
 
-  fetchPokemonNames = () => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151`)
+  fetchPokemonNames = dexLimit => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/?offset=0&limit=${dexLimit}`)
       .then(res => res.json())
       .then(data => {
         this.setState({ pokemonNames: data.results });
@@ -30,10 +29,6 @@ class PokedexPage extends Component {
     return Math.round(Math.random() * (max - min) + min);
   };
 
-  renderPokedexEntry = id => {
-    return <PokedexEntry id={id} />;
-  };
-
   setSearchText = event => {
     const searchText = event.target.value;
     this.setState({ searchText });
@@ -42,10 +37,12 @@ class PokedexPage extends Component {
   filterRenderedCards = searchTerm => {
     if (this.state.pokemonNames) {
       const currentCards = this.renderPokeCards();
+      // console.log(currentCards);
+      // return null;
       let filteredCards = currentCards.filter(card => {
         return (
-          card.props.name.includes(searchTerm) ||
-          card.props.id.toString().includes(searchTerm)
+          card.props.children.props.name.includes(searchTerm) ||
+          card.props.children.props.id.toString().includes(searchTerm)
         );
       });
       return filteredCards;
@@ -57,11 +54,13 @@ class PokedexPage extends Component {
     if (this.state.pokemonNames) {
       for (let index = 0; index < 151; index++) {
         pokeCardArray.push(
-          <PokedexCard
-            key={index}
-            name={this.state.pokemonNames[index].name}
-            id={index + 1}
-          />
+          <Link key={index} to={`${index + 1}`}>
+            <PokedexCard
+              key={index}
+              name={this.state.pokemonNames[index].name}
+              id={index + 1}
+            />
+          </Link>
         );
       }
       return pokeCardArray;
@@ -73,16 +72,14 @@ class PokedexPage extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <h2>Pokedex</h2>
+        <h2>The Pokedex</h2>
         <SearchBar
           setSearchText={this.setSearchText}
           searchText={this.state.searchText}
         />
         <section className={styles.pokedexCards}>
-          {/* {this.renderPokeCards()} */}
           {this.filterRenderedCards(this.state.searchText)}
         </section>
-        {/* {this.renderPokedexEntry(this.state.entryId)} */}
       </div>
     );
   }
