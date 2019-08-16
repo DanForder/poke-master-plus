@@ -124,6 +124,7 @@ class PokedexEntry extends Component {
     );
   };
 
+  //TODO: show loading until ready to display
   render() {
     return (
       <main className={styles.main}>
@@ -139,7 +140,11 @@ class PokedexEntry extends Component {
             <h2>Loading...</h2>
           )}
           <h2>#{this.state.pokemon.id}</h2>
-          <Link to={`../${this.state.pokemon.id + 1}`}>
+          <Link
+            to={`../${
+              this.state.pokemon.id + 1 > 151 ? 151 : this.state.pokemon.id + 1
+            }`}
+          >
             <button onClick={() => this.getNextPokemon(this.state.id)}>
               Next
             </button>
