@@ -78,7 +78,7 @@ class PokedexPage extends Component {
           searchText={this.state.searchText}
         />
         <section className={styles.pokedexCards}>
-          {this.filterRenderedCards(this.state.searchText)}
+          {this.filterRenderedCards(this.state.searchText.toLowerCase())}
         </section>
       </div>
     );
