@@ -1,7 +1,7 @@
 * {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: black;
+  color: white;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -12,11 +12,11 @@
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: rgb(115, 166, 182);
+  background-color: white;
 }
 
 .wrapper {
-  background-color: white;
+  background-color: cadetblue;
   // border: red solid 2px;
   width: 100vw;
   max-width: 700px;

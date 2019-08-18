@@ -98,11 +98,11 @@ class PokedexEntry extends Component {
         <div>
           <div>
             <h3>Height</h3>
-            <p>{this.state.pokemonData.height}</p>
+            <p>{this.state.pokemonData.height >= 10 ? `${Math.round(this.state.pokemonData.height*0.1*10)/10}m`:`${this.state.pokemonData.height * 10}cm`}</p>
           </div>
           <div>
             <h3>Weight</h3>
-            <p>{this.state.pokemonData.weight}</p>
+            <p>{this.state.pokemonData.weight >= 10 ? `${Math.round(this.state.pokemonData.weight*0.1*10)/10}kg`:`${this.state.pokemonData.weight * 10}g`}</p>
           </div>
         </div>
       </section>
@@ -110,14 +110,15 @@ class PokedexEntry extends Component {
   };
 
   getPokemonDescription = () => {
+    const englishDescriptions = this.state.pokemon.flavor_text_entries.filter(entry=>{
+      return entry.language.name === "en";
+    })
     return (
       <section className={styles.pokeDescription}>
         <h3>Description</h3>
         <p>
           {
-            this.state.pokemon.flavor_text_entries[
-              this.state.pokemon.flavor_text_entries.length - 1
-            ].flavor_text
+            englishDescriptions[englishDescriptions.length-1].flavor_text
           }
         </p>
       </section>
@@ -128,29 +129,33 @@ class PokedexEntry extends Component {
   render() {
     return (
       <main className={styles.main}>
-        <header>
-          <Link to="../">
-            <button onClick={() => this.getPreviousPokemon(this.state.id)}>
-              Pokedex
-            </button>
-          </Link>
-          {this.state.pokemon ? (
-            <h2>{this.capitalize(this.state.pokemon.name)}</h2>
-          ) : (
-            <h2>Loading...</h2>
-          )}
-          <h2>#{this.state.pokemon.id}</h2>
-          <Link
-            to={`../${
-              this.state.pokemon.id + 1 > 151 ? 151 : this.state.pokemon.id + 1
-            }`}
-          >
-            <button onClick={() => this.getNextPokemon(this.state.id)}>
-              Next
-            </button>
-          </Link>
-          {/* TODO: loading image until state is defined */}
-        </header>
+        <section className={styles.headerContainer}>
+          <header>
+            <Link to={`../${
+                this.state.pokemon.id - 1 < 1 ? 1 : this.state.pokemon.id - 1
+              }`}>
+              <button onClick={() => this.getPreviousPokemon(this.state.id)}>
+                Previous
+              </button>
+            </Link>
+              {this.state.pokemon ? (
+                <h2>{this.capitalize(this.state.pokemon.name)} #{this.state.pokemon.id}</h2>
+              ) : (
+                <h2>Loading...</h2>
+              )}
+              {/* <h2>#{this.state.pokemon.id}</h2> */}
+            <Link
+              to={`../${
+                this.state.pokemon.id + 1 > 151 ? 151 : this.state.pokemon.id + 1
+              }`}
+            >
+              <button onClick={() => this.getNextPokemon(this.state.id)}>
+                Next
+              </button>
+            </Link>
+            {/* TODO: loading image until state is defined */}
+          </header>
+        </section>
 
         <section className={styles.info}>
           {this.state.pokemonData ? (

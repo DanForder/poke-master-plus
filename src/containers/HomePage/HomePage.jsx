@@ -12,7 +12,7 @@ class HomePage extends Component {
           src="https://purepng.com/public/uploads/large/purepng.com-pokeballpokeballdevicepokemon-ballpokemon-capture-ball-1701527825891sbtn8.png"
           alt="pokeball"
         />
-        <h2>The Pokedex is coming!</h2>
+        <h2>Who's That Pokémon is coming soon!</h2>
       </div>
     );
   }

@@ -10,7 +10,7 @@ class App extends Component {
       <div class="container">
         <div class="wrapper">
           <header class="header">
-            <h1>DFWD Presents...</h1>
+            <h1>Poké Master Plus</h1>
           </header>
           <Routes />
           <nav class="navbar">
