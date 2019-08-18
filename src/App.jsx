@@ -12,13 +12,18 @@ class App extends Component {
           <header class="header">
             <h1>Poké Master Plus</h1>
           </header>
-          <Routes />
+          <div class="content">
+            <Routes />
+          </div>
           <nav class="navbar">
             <div>
               <Link to="/home">Home</Link>
             </div>
             <div>
-              <Link to="/pokedex">The Pokedex</Link>
+              <Link to="/pokedex">The Pokédex</Link>
+            </div>
+            <div>
+              <Link to="/game">Who's That Pokémon?</Link>
             </div>
           </nav>
         </div>
