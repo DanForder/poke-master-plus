@@ -12,7 +12,7 @@ class Routes extends Component {
   render() {
     return (
       <Router>
-        <Redirect noThrow from="/" to="pokedex" />
+        <Redirect noThrow from="/" to="home" />
         <HomePage path="home" />
         <PokedexPage path="pokedex" />
         <PokedexEntry path="pokedex/:id" />
