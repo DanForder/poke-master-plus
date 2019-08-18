@@ -168,10 +168,12 @@ class PokedexEntry extends Component {
               </button>
             </Link>
             {this.state.pokemon ? (
-              <h2>
-                {this.capitalize(this.state.pokemon.name)} #
-                {this.state.pokemon.id}
-              </h2>
+              <div>
+                <h2>
+                  {this.capitalize(this.state.pokemon.name)} #
+                  {this.state.pokemon.id}
+                </h2>
+              </div>
             ) : (
               <h2>Loading...</h2>
             )}

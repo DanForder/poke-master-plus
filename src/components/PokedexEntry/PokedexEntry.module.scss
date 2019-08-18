@@ -17,11 +17,18 @@
       button {
         height: 100%;
         min-width: 60px;
+        background-color: rgb(139, 56, 56);
+        border: none;
+        border-radius: 50px;
+
+        &:hover {
+          background-color: rgb(119, 47, 47);
+        }
       }
-      h2 {
-        // border: black 2px solid;
+
+      div {
         display: flex;
-        justify-content: center;
+        align-items: center;
       }
     }
   }
