@@ -29,6 +29,7 @@
     // border: yellow 2px solid;
     height: 35%;
     width: 100%;
+    max-width: 350px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -37,6 +38,7 @@
       height: 45%;
       width: 40%;
       min-width: 100px;
+
       background-color: rgb(139, 56, 56);
       border: none;
       border-radius: 50px;
