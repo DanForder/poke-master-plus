@@ -16,15 +16,19 @@ class GameTurn extends Component {
     );
   };
 
+  capitalizeFirstLetter = string => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   renderPokemonButtons = () => {
     return this.props.pokemonArray.map((pokemon, key) => {
       return pokemon === this.props.chosenPokemon ? (
         <button onClick={this.props.addScore} key={key}>
-          {pokemon.pokemon.name}
+          {this.capitalizeFirstLetter(pokemon.pokemon.name)}
         </button>
       ) : (
         <button onClick={this.props.minusScore} key={key}>
-          {pokemon.pokemon.name}
+          {this.capitalizeFirstLetter(pokemon.pokemon.name)}
         </button>
       );
     });
@@ -34,8 +38,8 @@ class GameTurn extends Component {
     return (
       <section className={styles.wrapper}>
         <h3>Question #{this.props.turnNumber}</h3>
-        {this.getAnswerImage()}
-        <div>{this.renderPokemonButtons()}</div>
+        <div className={styles.answerImg}>{this.getAnswerImage()}</div>
+        <div className={styles.answers}>{this.renderPokemonButtons()}</div>
       </section>
     );
   }

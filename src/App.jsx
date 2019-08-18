@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faGamepad, faBook } from "@fortawesome/free-solid-svg-icons";
 
 class App extends Component {
-  state = { activeIcon: "home" };
+  state = { activeIcon: "pokedex" };
 
   componentDidMount() {
     const url = window.location.href;
@@ -34,14 +34,14 @@ class App extends Component {
             <Routes />
           </div>
           <nav class="navbar">
-            <div style={this.getActiveLink("home")}>
+            {/* <div style={this.getActiveLink("home")}>
               <Link
                 to="/home"
                 onClick={() => this.setState({ activeIcon: "home" })}
               >
                 <FontAwesomeIcon icon={faHome} size="lg" />
               </Link>
-            </div>
+            </div> */}
             <div style={this.getActiveLink("pokedex")}>
               <Link
                 to="/pokedex"
