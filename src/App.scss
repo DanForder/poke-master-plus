@@ -49,11 +49,22 @@
 
   .navbar {
     // border: blue solid 2px;
+    background-color: rgb(173, 72, 72);
     height: 10vh;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    div {
+      // background-color: rgb(136, 58, 58);
+      border-radius: 50px;
+      height: 80%;
+      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 .pokeball {
