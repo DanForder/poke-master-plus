@@ -3,7 +3,13 @@ import styles from "./PokedexEntry.module.scss";
 import { Link } from "@reach/router";
 
 class PokedexEntry extends Component {
-  state = { pokemon: "", pokemonData: "", pokemonImage: "", id: 0 };
+  state = {
+    pokemon: "",
+    pokemonData: "",
+    pokemonImages: "",
+    pokemonImage: "",
+    id: 0
+  };
 
   //https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151
   //https://pokeapi.co/api/v2/pokemon/1/
@@ -50,7 +56,11 @@ class PokedexEntry extends Component {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then(res => res.json())
       .then(data => {
-        this.setState({ pokemonData: data, pokemonImage: data.sprites });
+        this.setState({
+          pokemonData: data,
+          pokemonImages: data.sprites,
+          pokemonImage: data.sprites.front_default
+        });
       })
       .catch(error => console.log(error));
   }
@@ -67,6 +77,12 @@ class PokedexEntry extends Component {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
+  toggleShinyImage = () => {
+    this.state.pokemonImage === this.state.pokemonImages.front_default
+      ? this.setState({ pokemonImage: this.state.pokemonImages.front_shiny })
+      : this.setState({ pokemonImage: this.state.pokemonImages.front_default });
+  };
+
   getPokemonData = () => {
     let pokemonTypes = this.state.pokemonData.types.map(type => {
       return type.type.name;
@@ -78,8 +94,11 @@ class PokedexEntry extends Component {
 
     return (
       <section className={styles.pokeData}>
-        <div>
-          <img src={this.state.pokemonImage.front_default} alt="a pokemon" />
+        <div onClick={this.toggleShinyImage}>
+          <img
+            src={this.state.pokemonImage}
+            alt={`${this.state.pokemon.name}`}
+          />
         </div>
         <div>
           <div>
@@ -98,11 +117,21 @@ class PokedexEntry extends Component {
         <div>
           <div>
             <h3>Height</h3>
-            <p>{this.state.pokemonData.height >= 10 ? `${Math.round(this.state.pokemonData.height*0.1*10)/10}m`:`${this.state.pokemonData.height * 10}cm`}</p>
+            <p>
+              {this.state.pokemonData.height >= 10
+                ? `${Math.round(this.state.pokemonData.height * 0.1 * 10) /
+                    10}m`
+                : `${this.state.pokemonData.height * 10}cm`}
+            </p>
           </div>
           <div>
             <h3>Weight</h3>
-            <p>{this.state.pokemonData.weight >= 10 ? `${Math.round(this.state.pokemonData.weight*0.1*10)/10}kg`:`${this.state.pokemonData.weight * 10}g`}</p>
+            <p>
+              {this.state.pokemonData.weight >= 10
+                ? `${Math.round(this.state.pokemonData.weight * 0.1 * 10) /
+                    10}kg`
+                : `${this.state.pokemonData.weight * 10}g`}
+            </p>
           </div>
         </div>
       </section>
@@ -110,17 +139,15 @@ class PokedexEntry extends Component {
   };
 
   getPokemonDescription = () => {
-    const englishDescriptions = this.state.pokemon.flavor_text_entries.filter(entry=>{
-      return entry.language.name === "en";
-    })
+    const englishDescriptions = this.state.pokemon.flavor_text_entries.filter(
+      entry => {
+        return entry.language.name === "en";
+      }
+    );
     return (
       <section className={styles.pokeDescription}>
         <h3>Description</h3>
-        <p>
-          {
-            englishDescriptions[englishDescriptions.length-1].flavor_text
-          }
-        </p>
+        <p>{englishDescriptions[englishDescriptions.length - 1].flavor_text}</p>
       </section>
     );
   };
@@ -131,22 +158,29 @@ class PokedexEntry extends Component {
       <main className={styles.main}>
         <section className={styles.headerContainer}>
           <header>
-            <Link to={`../${
+            <Link
+              to={`../${
                 this.state.pokemon.id - 1 < 1 ? 1 : this.state.pokemon.id - 1
-              }`}>
+              }`}
+            >
               <button onClick={() => this.getPreviousPokemon(this.state.id)}>
                 Previous
               </button>
             </Link>
-              {this.state.pokemon ? (
-                <h2>{this.capitalize(this.state.pokemon.name)} #{this.state.pokemon.id}</h2>
-              ) : (
-                <h2>Loading...</h2>
-              )}
-              {/* <h2>#{this.state.pokemon.id}</h2> */}
+            {this.state.pokemon ? (
+              <h2>
+                {this.capitalize(this.state.pokemon.name)} #
+                {this.state.pokemon.id}
+              </h2>
+            ) : (
+              <h2>Loading...</h2>
+            )}
+            {/* <h2>#{this.state.pokemon.id}</h2> */}
             <Link
               to={`../${
-                this.state.pokemon.id + 1 > 151 ? 151 : this.state.pokemon.id + 1
+                this.state.pokemon.id + 1 > 151
+                  ? 151
+                  : this.state.pokemon.id + 1
               }`}
             >
               <button onClick={() => this.getNextPokemon(this.state.id)}>
