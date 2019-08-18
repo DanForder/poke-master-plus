@@ -1,13 +1,58 @@
 .wrapper {
-  border: green 2px solid;
-  width: 100vw;
-  height: 80vh;
+  // border: green 2px solid;
+  // background-color: rgb(173, 72, 72);
+  // border-radius: 50px;
+  width: 80vw;
+  height: 75vh;
+  max-width: 700px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  //   flex-wrap: wrap;
   text-align: center;
+
+  header {
+    // border: blue 2px solid;
+    background-color: rgb(173, 72, 72);
+    border-radius: 50px;
+    padding: 2%;
+    height: 27.5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    h2 {
+      // border: olive 2px solid;
+      height: 50%;
+    }
+    .score {
+      // border: orange solid 2px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 50%;
+
+      button {
+        height: 75%;
+        width: 50%;
+        min-width: 150px;
+        background-color: rgb(139, 56, 56);
+        border: none;
+        border-radius: 50px;
+
+        &:hover {
+          background-color: rgb(119, 47, 47);
+        }
+      }
+    }
+  }
+
+  .gameCanvas {
+    // border: yellow 2px solid;
+    background-color: rgb(173, 72, 72);
+    border-radius: 50px;
+    height: 67.5%;
+    width: 100%;
+  }
 
   button {
     background-color: rgb(97, 44, 44);
@@ -15,7 +60,7 @@
     height: 50px;
   }
 
-  & > * {
-    margin: 25px 0;
-  }
+  // & > * {
+  //   margin: 25px 0;
+  // }
 }

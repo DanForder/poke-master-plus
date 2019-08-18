@@ -32,10 +32,10 @@ class GameTurn extends Component {
 
   render() {
     return (
-      <section>
-        <h3>Single Round</h3>
+      <section className={styles.wrapper}>
+        <h3>Question #{this.props.turnNumber}</h3>
         {this.getAnswerImage()}
-        {this.renderPokemonButtons()}
+        <div>{this.renderPokemonButtons()}</div>
       </section>
     );
   }

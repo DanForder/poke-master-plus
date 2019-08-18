@@ -5,6 +5,7 @@ import GameTurn from "../../components/GameTurn";
 class GamePage extends Component {
   state = {
     gameActive: false,
+    turnNumber: 0,
     currentScore: 0,
     pokemonNames: null,
     pokemonArray: null,
@@ -61,25 +62,48 @@ class GamePage extends Component {
   createNewTurn = () => {
     const pokemonArray = this.get3RandomPokemon();
     const chosenPokemon = pokemonArray[this.randomBetweenTwo(0, 2)];
-    this.setState({ pokemonArray, chosenPokemon, gameActive: true });
+    this.setState({
+      turnNumber: this.state.turnNumber + 1,
+      pokemonArray,
+      chosenPokemon
+    });
+  };
+
+  startNewGame = () => {
+    const pokemonArray = this.get3RandomPokemon();
+    const chosenPokemon = pokemonArray[this.randomBetweenTwo(0, 2)];
+    this.setState({
+      turnNumber: 1,
+      currentScore: 0,
+      gameActive: true,
+      pokemonArray,
+      chosenPokemon
+    });
   };
 
   render() {
     return (
       <main className={styles.wrapper}>
-        <h2>Who's That Pokemon?</h2>
-        {this.state.gameActive ? (
-          <GameTurn
-            addScore={this.addScore}
-            minusScore={this.minusScore}
-            pokemonArray={this.state.pokemonArray}
-            chosenPokemon={this.state.chosenPokemon}
-          />
-        ) : null}
-        <p>{this.state.currentScore}</p>
-        {/* <button onClick={this.addScore}>+1 Score</button>
-        <button onClick={this.minusScore}>-1 Score</button> */}
-        <button onClick={this.createNewTurn}>New Game</button>
+        <header>
+          <h2>Who's That Pokemon?</h2>
+          <div className={styles.score}>
+            <p>Your Score: {this.state.currentScore}</p>
+            {/* <button onClick={this.addScore}>+1 Score</button>
+              <button onClick={this.minusScore}>-1 Score</button> */}
+            <button onClick={this.startNewGame}>New Game</button>
+          </div>
+        </header>
+        <section className={styles.gameCanvas}>
+          {this.state.gameActive ? (
+            <GameTurn
+              turnNumber={this.state.turnNumber}
+              addScore={this.addScore}
+              minusScore={this.minusScore}
+              pokemonArray={this.state.pokemonArray}
+              chosenPokemon={this.state.chosenPokemon}
+            />
+          ) : null}
+        </section>
       </main>
     );
   }
