@@ -72,11 +72,13 @@ class PokedexPage extends Component {
   render() {
     return (
       <div className={styles.wrapper}>
-        <h2>The Pokedex</h2>
-        <SearchBar
-          setSearchText={this.setSearchText}
-          searchText={this.state.searchText}
-        />
+        <header>
+          <h2>The Pokedex</h2>
+          <SearchBar
+            setSearchText={this.setSearchText}
+            searchText={this.state.searchText}
+          />
+        </header>
         <section className={styles.pokedexCards}>
           {this.filterRenderedCards(this.state.searchText.toLowerCase())}
         </section>

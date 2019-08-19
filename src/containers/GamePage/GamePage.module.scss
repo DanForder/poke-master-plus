@@ -2,7 +2,7 @@
   // border: green 2px solid;
   // background-color: rgb(173, 72, 72);
   // border-radius: 50px;
-  width: 80vw;
+  width: 85vw;
   height: 75vh;
   max-width: 700px;
   display: flex;
@@ -10,6 +10,19 @@
   align-items: center;
   flex-direction: column;
   text-align: center;
+
+  button {
+    width: 75px;
+    height: 50px;
+    min-width: 100px;
+    background-color: rgb(139, 56, 56);
+    border: none;
+    border-radius: 50px;
+
+    &:hover {
+      background-color: rgb(119, 47, 47);
+    }
+  }
 
   header {
     // border: blue 2px solid;
@@ -27,22 +40,11 @@
     .score {
       // border: orange solid 2px;
       display: flex;
+      flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+      flex-wrap: wrap;
       height: 50%;
-
-      button {
-        height: 75%;
-        width: 50%;
-        min-width: 150px;
-        background-color: rgb(139, 56, 56);
-        border: none;
-        border-radius: 50px;
-
-        &:hover {
-          background-color: rgb(119, 47, 47);
-        }
-      }
     }
   }
 
@@ -53,14 +55,4 @@
     height: 67.5%;
     width: 100%;
   }
-
-  button {
-    background-color: rgb(97, 44, 44);
-    width: 75px;
-    height: 50px;
-  }
-
-  // & > * {
-  //   margin: 25px 0;
-  // }
 }

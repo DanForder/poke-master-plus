@@ -4,9 +4,10 @@ import Routes from "./routes/Routes";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faGamepad, faBook } from "@fortawesome/free-solid-svg-icons";
+import firebase, { provider, firestore } from "./firebase";
 
 class App extends Component {
-  state = { activeIcon: "pokedex" };
+  state = { activeIcon: "pokedex", user: null };
 
   componentDidMount() {
     const url = window.location.href;
@@ -16,6 +17,61 @@ class App extends Component {
       this.setState({ activeIcon: "game" });
     }
   }
+
+  signIn = () => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(result => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        // var token = result.credential.accessToken;
+
+        // The signed-in user info.
+        var user = result.user;
+        this.setState({
+          user
+        });
+        //if one doesn't exist, create new collection with unique user ID
+        this.checkForUserCollection(user.uid);
+      })
+      .catch(error => {
+        // An error happened.
+        console.log(error);
+      });
+  };
+
+  checkForUserCollection = userToken => {
+    firestore
+      .collection("users")
+      .doc(userToken)
+      .get()
+      .then(querySnapshot => {
+        if (!querySnapshot.data()) {
+          console.log("user data doesn't exist yet");
+          console.log("making user collection in database");
+          this.createUserCollection(userToken);
+        } else {
+          console.log("user data exists already");
+        }
+      })
+      .catch(function(error) {
+        console.log("Error getting document:", error);
+      });
+  };
+
+  createUserCollection(userToken) {
+    firestore
+      .collection("users")
+      .doc(userToken)
+      .set({ scores: [] });
+  }
+
+  saveScore = score => {
+    firestore
+      .collection("users")
+      .doc(this.state.user.uid)
+      .update({ scores: firebase.firestore.FieldValue.arrayUnion(score) });
+  };
 
   getActiveLink = link => {
     return link === this.state.activeIcon
@@ -31,7 +87,11 @@ class App extends Component {
             <h1>Poké Master Plus</h1>
           </header>
           <div class="content">
-            <Routes />
+            <Routes
+              user={this.state.user}
+              signIn={this.signIn}
+              saveScore={this.saveScore}
+            />
           </div>
           <nav class="navbar">
             {/* <div style={this.getActiveLink("home")}>

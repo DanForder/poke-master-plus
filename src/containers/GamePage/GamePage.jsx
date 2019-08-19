@@ -9,7 +9,8 @@ class GamePage extends Component {
     currentScore: 0,
     pokemonNames: null,
     pokemonArray: null,
-    chosenPokemon: null
+    chosenPokemon: null,
+    user: null
   };
 
   componentDidMount() {
@@ -87,10 +88,21 @@ class GamePage extends Component {
         <header>
           <h2>Who's That Pokemon?</h2>
           <div className={styles.score}>
-            <p>Your Score: {this.state.currentScore}</p>
+            {this.props.user ? (
+              <React.Fragment>
+                <p>Welcome, {this.props.user.displayName}!</p>
+                <p>Your Score: {this.state.currentScore}</p>
+                <button
+                  onClick={() => this.props.saveScore(this.state.currentScore)}
+                >
+                  Save Score
+                </button>
+              </React.Fragment>
+            ) : (
+              <button onClick={this.props.signIn}>Sign In</button>
+            )}
             {/* <button onClick={this.addScore}>+1 Score</button>
               <button onClick={this.minusScore}>-1 Score</button> */}
-            <button onClick={this.startNewGame}>New Game</button>
           </div>
         </header>
         <section className={styles.gameCanvas}>
@@ -102,7 +114,17 @@ class GamePage extends Component {
               pokemonArray={this.state.pokemonArray}
               chosenPokemon={this.state.chosenPokemon}
             />
-          ) : null}
+          ) : (
+            <section>
+              {this.props.user ? (
+                <div>
+                  <button onClick={this.startNewGame}>New Game</button>
+                </div>
+              ) : (
+                <p>Sign in to play!</p>
+              )}
+            </section>
+          )}
         </section>
       </main>
     );

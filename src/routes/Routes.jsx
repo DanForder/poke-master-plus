@@ -16,7 +16,12 @@ class Routes extends Component {
         <HomePage path="home" />
         <PokedexPage path="pokedex" />
         <PokedexEntry path="pokedex/:id" />
-        <GamePage path="game" />
+        <GamePage
+          user={this.props.user}
+          signIn={this.props.signIn}
+          saveScore={this.props.saveScore}
+          path="game"
+        />
         <NotFound default />
       </Router>
     );

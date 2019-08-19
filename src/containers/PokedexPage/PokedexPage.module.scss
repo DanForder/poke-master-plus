@@ -2,7 +2,7 @@
   // border: green 2px solid;
   background-color: rgb(173, 72, 72);
   border-radius: 50px;
-  width: 80vw;
+  width: 85vw;
   height: 75vh;
   max-width: 700px;
   display: flex;
@@ -11,12 +11,24 @@
   flex-direction: column;
   text-align: center;
 
+  header {
+    // border: 2px solid orangered;
+    background-color: rgb(86, 121, 122);
+    border-radius: 50px 50px 0 0;
+    width: 90%;
+    padding: 10px 0;
+    // h2 {
+    //   color: grey;
+    // }
+  }
+
   .pokedexCards {
-    // border: blue 2px double;
+    border: rgb(86, 121, 122) 5px solid;
+    border-radius: 0 0 50px 50px;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    width: 100%;
+    width: 90%;
     height: 60vh;
     overflow: scroll;
 
