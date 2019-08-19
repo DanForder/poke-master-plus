@@ -115,7 +115,7 @@ class GamePage extends Component {
               chosenPokemon={this.state.chosenPokemon}
             />
           ) : (
-            <section>
+            <section className={styles.preGameCanvas}>
               {this.props.user ? (
                 <div>
                   <button onClick={this.startNewGame}>New Game</button>

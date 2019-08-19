@@ -54,5 +54,23 @@
     border-radius: 50px;
     height: 67.5%;
     width: 100%;
+
+    .preGameCanvas {
+      // border: 2px blue solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      div {
+        width: 50%;
+        height: 25%;
+
+        button {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
   }
 }
