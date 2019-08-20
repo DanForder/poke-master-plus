@@ -7,7 +7,7 @@ import { faHome, faGamepad, faBook } from "@fortawesome/free-solid-svg-icons";
 import firebase, { provider, firestore } from "./firebase";
 
 class App extends Component {
-  state = { activeIcon: "pokedex", user: null, userScores: [] };
+  state = { activeIcon: "pokedex", user: null, userScores: [], highScores: [] };
 
   componentDidMount() {
     const url = window.location.href;
@@ -16,6 +16,7 @@ class App extends Component {
     } else if (url.includes("game")) {
       this.setState({ activeIcon: "game" });
     }
+    this.getAllHighScores();
   }
 
   signIn = () => {
@@ -32,7 +33,7 @@ class App extends Component {
           user
         });
         //if one doesn't exist, create new collection with unique user ID
-        this.checkForUserCollection(user.uid);
+        this.checkForUserCollection(user);
       })
       .catch(error => {
         // An error happened.
@@ -40,16 +41,16 @@ class App extends Component {
       });
   };
 
-  checkForUserCollection = userToken => {
+  checkForUserCollection = user => {
     firestore
       .collection("users")
-      .doc(userToken)
+      .doc(user.uid)
       .get()
       .then(querySnapshot => {
         if (!querySnapshot.data()) {
           console.log("user data doesn't exist yet");
           console.log("making user collection in database");
-          this.createUserCollection(userToken);
+          this.createUserCollection(user);
         } else {
           console.log("user data exists already");
         }
@@ -59,11 +60,11 @@ class App extends Component {
       });
   };
 
-  createUserCollection(userToken) {
+  createUserCollection(user) {
     firestore
       .collection("users")
-      .doc(userToken)
-      .set({ scores: [] });
+      .doc(user.uid)
+      .set({ scores: [], name: user.displayName });
   }
 
   saveScore = score => {
@@ -91,6 +92,31 @@ class App extends Component {
       });
   };
 
+  getAllHighScores = () => {
+    let allScoresArray = [];
+    firestore
+      .collection("users")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          allScoresArray.push([doc.data().name, doc.data().scores]);
+        });
+        this.makeHighScoreList(allScoresArray);
+      });
+  };
+
+  makeHighScoreList = highScoreArray => {
+    let highestScoreArray = [];
+    highScoreArray.forEach(highScore => {
+      highScore[1][0]
+        ? highestScoreArray.push([highScore[0], Math.max(...highScore[1])])
+        : highestScoreArray.push([highScore[0], 0]);
+    });
+    console.log(highestScoreArray);
+    this.setState({ highScores: highestScoreArray });
+  };
+
   getActiveLink = link => {
     return link === this.state.activeIcon
       ? { backgroundColor: `rgb(136, 58, 58)` }
@@ -108,6 +134,7 @@ class App extends Component {
             <Routes
               user={this.state.user}
               userScores={this.state.userScores}
+              highScores={this.state.highScores}
               signIn={this.signIn}
               saveScore={this.saveScore}
               getUserScoreArray={this.getUserScoreArray}
