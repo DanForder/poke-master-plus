@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Router, Redirect } from "@reach/router";
 import HomePage from "../containers/HomePage";
 import PokedexPage from "../containers/PokedexPage";
+import HighScorePage from "../containers/HighScorePage";
 import GamePage from "../containers/GamePage";
 import PokedexEntry from "../components/PokedexEntry/PokedexEntry";
 
@@ -24,6 +25,7 @@ class Routes extends Component {
           getUserScoreArray={this.props.getUserScoreArray}
           path="game"
         />
+        <HighScorePage highScores={this.props.highScores} path="highscores" />
         <NotFound default />
       </Router>
     );
