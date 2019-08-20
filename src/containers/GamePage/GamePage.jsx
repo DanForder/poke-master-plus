@@ -5,6 +5,7 @@ import GameTurn from "../../components/GameTurn";
 class GamePage extends Component {
   state = {
     gameActive: false,
+    gameFail: false,
     turnNumber: 0,
     currentScore: 0,
     pokemonNames: null,
@@ -31,9 +32,10 @@ class GamePage extends Component {
     this.createNewTurn();
   };
 
-  minusScore = () => {
-    this.setState({ currentScore: this.state.currentScore - 1 });
-    this.createNewTurn();
+  failGame = () => {
+    this.setState({ gameActive: false, failGame: true });
+    this.props.saveScore(this.state.currentScore);
+    this.props.getUserScoreArray();
   };
 
   randomBetweenTwo = (min, max) => {
@@ -76,6 +78,7 @@ class GamePage extends Component {
     this.setState({
       turnNumber: 1,
       currentScore: 0,
+      gameFail: false,
       gameActive: true,
       pokemonArray,
       chosenPokemon
@@ -92,17 +95,10 @@ class GamePage extends Component {
               <React.Fragment>
                 <p>Welcome, {this.props.user.displayName}!</p>
                 <p>Your Score: {this.state.currentScore}</p>
-                <button
-                  onClick={() => this.props.saveScore(this.state.currentScore)}
-                >
-                  Save Score
-                </button>
               </React.Fragment>
             ) : (
               <button onClick={this.props.signIn}>Sign In</button>
             )}
-            {/* <button onClick={this.addScore}>+1 Score</button>
-              <button onClick={this.minusScore}>-1 Score</button> */}
           </div>
         </header>
         <section className={styles.gameCanvas}>
@@ -110,18 +106,32 @@ class GamePage extends Component {
             <GameTurn
               turnNumber={this.state.turnNumber}
               addScore={this.addScore}
-              minusScore={this.minusScore}
+              failGame={this.failGame}
               pokemonArray={this.state.pokemonArray}
               chosenPokemon={this.state.chosenPokemon}
             />
           ) : (
             <section className={styles.preGameCanvas}>
               {this.props.user ? (
-                <div>
-                  <button onClick={this.startNewGame}>New Game</button>
-                </div>
+                this.state.failGame ? (
+                  <div className={styles.postGameCanvas}>
+                    <h3>Your score this game was {this.state.currentScore}</h3>
+                    <h3>
+                      Your high score is {Math.max(...this.props.userScores)}
+                    </h3>
+
+                    <button onClick={this.startNewGame}>New Game</button>
+                  </div>
+                ) : (
+                  <div>
+                    <button onClick={this.startNewGame}>New Game</button>
+                  </div>
+                )
               ) : (
-                <p>Sign in to play!</p>
+                <React.Fragment>
+                  <p>Sign in to play!</p>
+                  <p>How many pokemon can you name?</p>
+                </React.Fragment>
               )}
             </section>
           )}

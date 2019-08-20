@@ -7,7 +7,7 @@ import { faHome, faGamepad, faBook } from "@fortawesome/free-solid-svg-icons";
 import firebase, { provider, firestore } from "./firebase";
 
 class App extends Component {
-  state = { activeIcon: "pokedex", user: null };
+  state = { activeIcon: "pokedex", user: null, userScores: [] };
 
   componentDidMount() {
     const url = window.location.href;
@@ -73,6 +73,24 @@ class App extends Component {
       .update({ scores: firebase.firestore.FieldValue.arrayUnion(score) });
   };
 
+  getUserScoreArray = () => {
+    const docRef = firestore.collection("users").doc(this.state.user.uid);
+    docRef
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          this.setState({ userScores: doc.data().scores });
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch(function(error) {
+        console.log("Error getting document:", error);
+      });
+  };
+
   getActiveLink = link => {
     return link === this.state.activeIcon
       ? { backgroundColor: `rgb(136, 58, 58)` }
@@ -89,8 +107,10 @@ class App extends Component {
           <div class="content">
             <Routes
               user={this.state.user}
+              userScores={this.state.userScores}
               signIn={this.signIn}
               saveScore={this.saveScore}
+              getUserScoreArray={this.getUserScoreArray}
             />
           </div>
           <nav class="navbar">

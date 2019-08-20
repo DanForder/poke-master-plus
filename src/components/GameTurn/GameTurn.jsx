@@ -12,7 +12,11 @@ class GameTurn extends Component {
 
     // console.log(this.state.chosenPokemon);
     return (
-      <img style={{ filter: `contrast(0%) brightness(30%)` }} src={imgSrc} />
+      <img
+        style={{ filter: `contrast(0%) brightness(30%)` }}
+        src={imgSrc}
+        alt="Answer Pokemon"
+      />
     );
   };
 
@@ -27,7 +31,7 @@ class GameTurn extends Component {
           {this.capitalizeFirstLetter(pokemon.pokemon.name)}
         </button>
       ) : (
-        <button onClick={this.props.minusScore} key={key}>
+        <button onClick={this.props.failGame} key={key}>
           {this.capitalizeFirstLetter(pokemon.pokemon.name)}
         </button>
       );
