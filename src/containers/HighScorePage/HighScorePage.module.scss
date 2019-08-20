@@ -1,12 +1,13 @@
 .wrapper {
   background-color: rgb(173, 72, 72);
   border-radius: 50px;
-  height: 60vh;
+  height: 75vh;
+  width: 85vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  //   overflow: hidden;
+  overflow: scroll;
 
   h2 {
     height: 10%;
@@ -14,11 +15,18 @@
 
   & > div {
     height: 80%;
+    // border: white 2px solid;
+
+    & p:first-child {
+      margin-right: auto;
+    }
   }
 
   .highScore {
+    // text-align: left;
+    // border: green 2px solid;
     margin: 5px;
-    width: 250px;
+    width: 40vw;
     display: flex;
     justify-content: space-evenly;
   }

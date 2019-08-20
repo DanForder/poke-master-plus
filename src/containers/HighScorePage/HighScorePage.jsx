@@ -16,7 +16,7 @@ class HighScorePage extends Component {
           {this.props.highScores.length > 0 ? (
             this.props.highScores.sort(this.sortHighScores).map(highScore => {
               return (
-                <div className={styles.highScore}>
+                <div key={highScore} className={styles.highScore}>
                   <p>{highScore[0]}</p>
                   <p>{highScore[1]}</p>
                 </div>

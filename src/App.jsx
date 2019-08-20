@@ -3,7 +3,7 @@ import "./App.scss";
 import Routes from "./routes/Routes";
 import { Link } from "@reach/router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faGamepad, faBook } from "@fortawesome/free-solid-svg-icons";
+import { faGamepad, faBook, faListOl } from "@fortawesome/free-solid-svg-icons";
 import firebase, { provider, firestore } from "./firebase";
 
 class App extends Component {
@@ -113,7 +113,7 @@ class App extends Component {
         ? highestScoreArray.push([highScore[0], Math.max(...highScore[1])])
         : highestScoreArray.push([highScore[0], 0]);
     });
-    console.log(highestScoreArray);
+    // console.log(highestScoreArray);
     this.setState({ highScores: highestScoreArray });
   };
 
@@ -163,6 +163,14 @@ class App extends Component {
                 onClick={() => this.setState({ activeIcon: "game" })}
               >
                 <FontAwesomeIcon icon={faGamepad} size="lg" />
+              </Link>
+            </div>
+            <div style={this.getActiveLink("highscores")}>
+              <Link
+                to="/highscores"
+                onClick={() => this.setState({ activeIcon: "highscores" })}
+              >
+                <FontAwesomeIcon icon={faListOl} size="lg" />
               </Link>
             </div>
           </nav>
