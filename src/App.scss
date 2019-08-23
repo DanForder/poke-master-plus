@@ -19,7 +19,7 @@
 .wrapper {
   // border: red solid 2px;
   width: 100vw;
-  // max-width: 850px;
+  // max-width: 750px;
   height: 100vh;
   // max-height: 700px;
   display: flex;
@@ -52,6 +52,7 @@
     background-color: rgb(173, 72, 72);
     height: 10vh;
     width: 100%;
+    // max-width: 750px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -60,7 +61,8 @@
       // background-color: rgb(136, 58, 58);
       border-radius: 50px;
       height: 80%;
-      width: 30%;
+      padding: 0 25px;
+      max-width: 30%;
       display: flex;
       justify-content: center;
       align-items: center;

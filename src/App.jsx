@@ -7,16 +7,19 @@ import { faGamepad, faBook, faListOl } from "@fortawesome/free-solid-svg-icons";
 import firebase, { provider, firestore } from "./firebase";
 
 class App extends Component {
-  state = { activeIcon: "pokedex", user: null, userScores: [], highScores: [] };
+  state = { activeIcon: "", user: null, userScores: [], highScores: [] };
 
   componentDidMount() {
     const url = window.location.href;
-    if (url.includes("pokedex")) {
-      this.setState({ activeIcon: "pokedex" });
-    } else if (url.includes("game")) {
+    if (url.includes("game")) {
       this.setState({ activeIcon: "game" });
+    } else if (url.includes("highscores")) {
+      this.setState({ activeIcon: "highscores" });
+    } else if (url.includes("pokedex")) {
+      this.setState({ activeIcon: "pokedex" });
     }
-    this.getAllHighScores();
+    //check for new highscores every second
+    setInterval(this.getAllHighScores, 1000);
   }
 
   signIn = () => {
