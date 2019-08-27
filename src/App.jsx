@@ -19,7 +19,9 @@ class App extends Component {
       this.setState({ activeIcon: "pokedex" });
     }
     //check for new highscores every second
-    setInterval(this.getAllHighScores, 1000);
+    // setInterval(this.getAllHighScores, 1000);
+
+    this.getAllHighScores();
   }
 
   signIn = () => {
