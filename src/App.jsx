@@ -48,7 +48,7 @@ class App extends Component {
 
   checkForUserCollection = user => {
     firestore
-      .collection("users")
+      .collection("userlist")
       .doc(user.uid)
       .get()
       .then(querySnapshot => {
@@ -67,20 +67,20 @@ class App extends Component {
 
   createUserCollection(user) {
     firestore
-      .collection("users")
+      .collection("userlist")
       .doc(user.uid)
-      .set({ scores: [], name: user.displayName });
+      .set({ scores: [0], name: user.displayName });
   }
 
   saveScore = score => {
     firestore
-      .collection("users")
+      .collection("userlist")
       .doc(this.state.user.uid)
       .update({ scores: firebase.firestore.FieldValue.arrayUnion(score) });
   };
 
   getUserScoreArray = () => {
-    const docRef = firestore.collection("users").doc(this.state.user.uid);
+    const docRef = firestore.collection("userlist").doc(this.state.user.uid);
     docRef
       .get()
       .then(doc => {
@@ -100,12 +100,13 @@ class App extends Component {
   getAllHighScores = () => {
     let allScoresArray = [];
     firestore
-      .collection("users")
+      .collection("userlist")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
           allScoresArray.push([doc.data().name, doc.data().scores]);
+          console.log("getting high scores array");
         });
         this.makeHighScoreList(allScoresArray);
       });
