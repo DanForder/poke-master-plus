@@ -2,6 +2,8 @@
 ### Overview
 Personal interest project, created in the last few weeks of _nology front-end coding bootcamp to consolidate my learning of RESTful APIs and Firebase Tools.
 
+View the application livepokedex.dforder.com
+
 ### Tech Used
 - React
 - Firebase (Hosting, Auth, Database)
@@ -10,6 +12,7 @@ Personal interest project, created in the last few weeks of _nology front-end co
 - Online Pokedex
 - Who's That Pokémon? game
 - Player Highscore Leaderboard
+- Progressive Web Application
 
 ### Future Goals
 - Include hard mode in game
