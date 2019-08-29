@@ -2,7 +2,7 @@
 ### Overview
 Personal interest project, created in the last few weeks of _nology front-end coding bootcamp to consolidate my learning of RESTful APIs and Firebase Tools.
 
-View the application livepokedex.dforder.com
+View the application live [here](http://pokedex.dforder.com)
 
 ### Tech Used
 - React
