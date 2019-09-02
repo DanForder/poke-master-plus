@@ -69,7 +69,7 @@ class App extends Component {
     firestore
       .collection("userlist")
       .doc(user.uid)
-      .set({ scores: [0], name: user.displayName });
+      .set({ scores: [], name: user.displayName });
   }
 
   saveScore = score => {
@@ -106,7 +106,7 @@ class App extends Component {
         querySnapshot.forEach(function(doc) {
           // doc.data() is never undefined for query doc snapshots
           allScoresArray.push([doc.data().name, doc.data().scores]);
-          console.log("getting high scores array");
+          // console.log("getting high scores array");
         });
         this.makeHighScoreList(allScoresArray);
       });
