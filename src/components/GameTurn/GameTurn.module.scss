@@ -1,5 +1,4 @@
 .wrapper {
-  //   border: blue 2px solid;
   height: 100%;
   width: 100%;
   display: flex;
@@ -8,7 +7,6 @@
   align-items: center;
 
   h3 {
-    // border: blueviolet 2px solid;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,7 +15,6 @@
   }
 
   .answerImg {
-    // border: black 2px solid;
     height: 50%;
     width: 100%;
     img {
@@ -26,7 +23,6 @@
   }
 
   .answers {
-    // border: yellow 2px solid;
     height: 35%;
     width: 100%;
     max-width: 350px;

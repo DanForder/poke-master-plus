@@ -1,7 +1,4 @@
 .wrapper {
-  // border: green 2px solid;
-  // background-color: rgb(173, 72, 72);
-  // border-radius: 50px;
   height: 60vh;
   width: 85vw;
   max-width: 700px;
@@ -25,7 +22,6 @@
   }
 
   header {
-    // border: blue 2px solid;
     background-color: rgb(173, 72, 72);
     border-radius: 50px;
     padding: 2%;
@@ -33,12 +29,12 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+
     h2 {
-      // border: olive 2px solid;
       height: 50%;
     }
+
     .score {
-      // border: orange solid 2px;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
@@ -49,14 +45,12 @@
   }
 
   .gameCanvas {
-    // border: yellow 2px solid;
     background-color: rgb(173, 72, 72);
     border-radius: 50px;
     height: 67.5%;
     width: 100%;
 
     .preGameCanvas {
-      // border: 2px blue solid;
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;

@@ -9,8 +9,6 @@ class GameTurn extends Component {
       "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" +
       this.props.chosenPokemon.id +
       ".png";
-
-    // console.log(this.state.chosenPokemon);
     return (
       <img
         style={{ filter: `contrast(0%) brightness(30%)` }}

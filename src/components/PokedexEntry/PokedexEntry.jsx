@@ -11,11 +11,7 @@ class PokedexEntry extends Component {
     id: 0
   };
 
-  //https://pokeapi.co/api/v2/pokemon/?offset=0&limit=151
-  //https://pokeapi.co/api/v2/pokemon/1/
-
   componentDidMount() {
-    //pokemon-species fetch
     this.setState({ id: this.props.id });
     this.fetchData(this.props.id);
   }
@@ -41,10 +37,6 @@ class PokedexEntry extends Component {
   };
 
   fetchData(id) {
-    //if random, choose random ID, else use prop ID passed in
-    // let newId;
-    // random ? (newId = this.randomBetweenTwo(1, 151)) : (newId = id);
-
     //pokemon-species fetch
     fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`)
       .then(res => res.json())
@@ -64,10 +56,6 @@ class PokedexEntry extends Component {
       })
       .catch(error => console.log(error));
   }
-
-  // changePokemonButton = () => {
-  //   this.fetchData(true);
-  // };
 
   randomBetweenTwo = (min, max) => {
     return Math.round(Math.random() * (max - min) + min);
@@ -152,7 +140,6 @@ class PokedexEntry extends Component {
     );
   };
 
-  //TODO: show loading until ready to display
   render() {
     return (
       <main className={styles.main}>

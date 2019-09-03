@@ -1,5 +1,4 @@
 .wrapper {
-  // border: green 2px solid;
   background-color: rgb(173, 72, 72);
   border-radius: 50px;
   width: 85vw;
@@ -12,14 +11,10 @@
   text-align: center;
 
   header {
-    // border: 2px solid orangered;
     background-color: rgb(86, 121, 122);
     border-radius: 50px 50px 0 0;
     width: 90%;
     padding: 10px 0;
-    // h2 {
-    //   color: grey;
-    // }
   }
 
   .pokedexCards {
@@ -33,7 +28,6 @@
     overflow: scroll;
 
     & > * {
-      // border: red solid 2px;
       text-decoration: none;
       width: 50%;
       max-width: 150px;

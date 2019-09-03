@@ -17,19 +17,14 @@
 }
 
 .wrapper {
-  // border: red solid 2px;
   width: 100vw;
-  // max-width: 750px;
   height: 100vh;
-  // max-height: 700px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  // text-align: center;
 
   .header {
-    // border: blue solid 2px;
     height: 10vh;
     width: 100%;
     display: flex;
@@ -39,7 +34,6 @@
   }
 
   .content {
-    // border: red 2px solid;
     height: 80vh;
     width: 100%;
     display: flex;
@@ -48,17 +42,14 @@
   }
 
   .navbar {
-    // border: blue solid 2px;
     background-color: rgb(173, 72, 72);
     height: 10vh;
     width: 100%;
-    // max-width: 750px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 
     div {
-      // background-color: rgb(136, 58, 58);
       border-radius: 50px;
       height: 80%;
       padding: 0 25px;

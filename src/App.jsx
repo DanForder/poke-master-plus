@@ -18,9 +18,6 @@ class App extends Component {
     } else if (url.includes("pokedex")) {
       this.setState({ activeIcon: "pokedex" });
     }
-    //check for new highscores every second
-    // setInterval(this.getAllHighScores, 1000);
-
     this.getAllHighScores();
   }
 
@@ -29,19 +26,14 @@ class App extends Component {
       .auth()
       .signInWithPopup(provider)
       .then(result => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        // var token = result.credential.accessToken;
-
-        // The signed-in user info.
         var user = result.user;
         this.setState({
           user
         });
-        //if one doesn't exist, create new collection with unique user ID
+        //If a user doesn't exist on the DB yet, create new collection with unique user ID
         this.checkForUserCollection(user);
       })
       .catch(error => {
-        // An error happened.
         console.log(error);
       });
   };
@@ -88,7 +80,6 @@ class App extends Component {
           console.log("Document data:", doc.data());
           this.setState({ userScores: doc.data().scores });
         } else {
-          // doc.data() will be undefined in this case
           console.log("No such document!");
         }
       })
@@ -104,9 +95,7 @@ class App extends Component {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
           allScoresArray.push([doc.data().name, doc.data().scores]);
-          // console.log("getting high scores array");
         });
         this.makeHighScoreList(allScoresArray);
       });
@@ -119,7 +108,6 @@ class App extends Component {
         ? highestScoreArray.push([highScore[0], Math.max(...highScore[1])])
         : highestScoreArray.push([highScore[0], 0]);
     });
-    // console.log(highestScoreArray);
     this.setState({ highScores: highestScoreArray });
   };
 

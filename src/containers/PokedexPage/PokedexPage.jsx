@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import PokedexEntry from "../../components/PokedexEntry";
 import PokedexCard from "../../components/PokedexCard";
 import SearchBar from "../../components/SearchBar";
 import styles from "./PokedexPage.module.scss";
@@ -37,8 +36,6 @@ class PokedexPage extends Component {
   filterRenderedCards = searchTerm => {
     if (this.state.pokemonNames) {
       const currentCards = this.renderPokeCards();
-      // console.log(currentCards);
-      // return null;
       let filteredCards = currentCards.filter(card => {
         return (
           card.props.children.props.name.includes(searchTerm) ||

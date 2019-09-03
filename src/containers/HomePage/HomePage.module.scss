@@ -1,12 +1,10 @@
 .wrapper {
-  // border: green 2px solid;
   width: 100vw;
   height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  // flex-wrap: wrap;
   text-align: center;
 
   & > * {
