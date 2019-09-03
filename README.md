@@ -18,6 +18,7 @@ View the application live [here](http://pokedex.dforder.com)
 - Include hard mode in game
 - Ability to choose different generations of pokémon in game
 - More generations of pokémon in pokedex
+- Pre-loading images
 
 ### How to
 - Clone the repo
